@@ -1,13 +1,33 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        vector<int> vec(3,0);
-        for(auto i: nums) vec[i]++;
-        int i=0,j=0;
-        for(i;i<vec[0];i++) nums[i]=0;
-        j=i;
-        for(i;i<j+vec[1];i++) nums[i]=1;
-        j=i;
-        for(i;i<j+vec[2];i++) nums[i]=2;
+        auto low = nums.begin();
+        auto mid = nums.begin();
+        auto high = nums.end();
+        int flag=0;
+        while(mid!=high)
+        {
+            if (*mid==0 && flag==0)
+            {
+                low++;
+                mid++;
+            }
+            else if(*mid ==0 && flag==1)
+            {
+                iter_swap(low,mid);
+                low++;
+            }
+            else if(*mid==1)
+            {
+                mid++;
+                flag=1;
+            }
+            else
+            {
+                iter_swap(mid,high-1);
+                high--;
+            }
+        }
+
     }
 };
