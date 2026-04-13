@@ -7,6 +7,7 @@ public:
         for(int i=0;i<nums.size();i++)
         {
             sum += (nums[i]%check==0)?(nums[i]/check):(nums[i]/check+1);
+            if (sum>h) return false;
         }
         if(sum<=h) return true;
         return false;
