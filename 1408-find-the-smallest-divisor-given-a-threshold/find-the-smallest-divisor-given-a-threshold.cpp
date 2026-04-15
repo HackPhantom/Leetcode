@@ -1,11 +1,11 @@
 class Solution {
 public:
-    bool fn(vector<int>nums, double divisor, int threshold)
+    bool fn(vector<int>& nums, int divisor, int threshold)
     {
         int sum = 0;
         for (int i=0; i<nums.size();i++)
         {
-            sum += ceil((double)nums[i]/divisor);
+            sum += (nums[i]+divisor-1)/divisor;
             if (sum>threshold) return false;
         }
         if(sum>threshold) return false;
