@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool fn(vector<int>& nums, int divisor, int threshold)
+    bool fn(const vector<int>& nums, int divisor, int threshold)
     {
         int sum = 0;
         for (int i=0; i<nums.size();i++)
