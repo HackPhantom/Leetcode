@@ -1,37 +1,48 @@
 class Solution {
 public:
 
-    bool fn(vector<int>& nums, int capacity, int days)
+    bool check(vector<int>& vec, int mid, int days)
     {
         int sum = 0;
-        int calc_days = 1;
-        for(int i=0; i<nums.size();i++)
+        int cnt = 0;
+        for (int i=0;i<vec.size();i++)
         {
-            sum += nums[i];
-            if (sum>capacity)
+            if (sum<mid) 
             {
-                calc_days++;
-                sum = nums[i];
-                if (calc_days>days) return false;
+                sum += vec[i];
+            }
+            if(sum==mid)
+            {
+                sum = 0;
+                cnt++;
+            }
+            else if (sum>mid)
+            {
+                sum = vec[i];
+                cnt++;
             }
         }
-        if(days>=calc_days) return true;
-        return false;
+        if (sum>0) cnt++;
+        if (cnt>days) return false;
+        return true;
     }
-    int shipWithinDays(vector<int>& nums, int days) {
+    int shipWithinDays(vector<int>& vec, int days) {
         int high = 0;
-        int max = nums[0];
-        for (int i=0;i<nums.size();i++)
+        int low = INT_MIN;
+        for (int i=0;i<vec.size();i++)
         {
-            if (nums[i]>max) max = nums[i];
-            high += nums[i];
+            high += vec[i];
+            if (vec[i]>low) low = vec[i];
         }
-        int low = max, mid;
-        while(low<=high)
+        int mid;
+
+        while (low<=high)
         {
             mid = low + (high-low)/2;
-            if (fn(nums,mid,days)) high = mid-1;
+
+            if (check(vec,mid,days)) high = mid-1;
             else low = mid+1;
+
         }
         return low;
     }
