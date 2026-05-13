@@ -7,7 +7,7 @@ public:
         {
             check=0;
             
-            for (int j=0;j<s.size();j++)
+            for (int j=0;j<t.size();j++)
             {
                 if (s[i] == t[j])
                 {
