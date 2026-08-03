@@ -3,7 +3,7 @@ public:
 
     vector<vector<int>> ans = {};
 
-    void myFunc(vector<int>& candidates , int index , int target , vector<int> ds)
+    void myFunc(vector<int>& candidates, int index, int target, vector<int>& ds)
     {
         if (target == 0)
         {
