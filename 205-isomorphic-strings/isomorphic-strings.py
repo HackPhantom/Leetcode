@@ -1,28 +1,15 @@
 class Solution:
-
-    def myFn(self , s):
-
-        s_map = {}
-        a = 1
-        final = ""
-
-        for i in s:
-            if i not in s_map:
-                s_map[i] = a
-                final += str(a)
-                final += " "
-                a += 1
-            else:
-                final += str(s_map[i])
-                final += " "
-        return final
-
-
     def isIsomorphic(self, s: str, t: str) -> bool:
 
-        a = self.myFn(s)
-        b = self.myFn(t)
+        map_s_to_t = {}
+        map_t_to_s = {}
 
-        if a == b:
-            return True
-        return False
+        for char_s, char_t in zip(s, t):
+            if (char_s in map_s_to_t and map_s_to_t[char_s] != char_t) or \
+               (char_t in map_t_to_s and map_t_to_s[char_t] != char_s):
+                return False
+
+            map_s_to_t[char_s] = char_t
+            map_t_to_s[char_t] = char_s
+
+        return True
