@@ -6,6 +6,7 @@ class Solution:
 
         start, end = 0, 0
 
+        @lru_cache(maxsize=None)
         def expand_around_center(left: int, right: int) -> int:
             while left >= 0 and right < len(s) and s[left] == s[right]:
                 left -= 1
